@@ -1,6 +1,7 @@
 import React from "react";
 import "./Redux.css";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ProductChild = ({ item }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,14 @@ const ProductChild = ({ item }) => {
       <button onClick={() => dispatch({ type: "Add_Cart", data: item })}>
         Add To Cart
       </button>
-      <button>View Details</button>
+      ,
+      <Link to="/details">
+        <button
+          onClick={() => dispatch({ type: "Selected_Products", data: item })}
+        >
+          View Details
+        </button>
+      </Link>
     </div>
   );
 };

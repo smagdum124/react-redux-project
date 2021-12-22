@@ -9,10 +9,13 @@ export const productReducer = (
     return { ...state, selectedProduct: [action.data] };
   }
   if (action.type === "Add_Cart") {
-    return { ...state, cart: [action.data, ...state.cart] };
+    return {
+      ...state,
+      cart: [{ ...action.data, key: state.cart.length }, ...state.cart], //action.data.id
+    };
   }
   if (action.type === "Remove_Product") {
-    const filtered = state.cart.filter((item) => item !== action.data);
+    const filtered = state.cart.filter((item) => item.key !== action.data.key);
     return { ...state, cart: filtered };
   }
   return state;
